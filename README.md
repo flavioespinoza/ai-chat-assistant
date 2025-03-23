@@ -1,17 +1,17 @@
 # AI Chat Assistant
 
-An AI-powered chatbot built with **Next.js 14**, **TypeScript**, **Tailwind CSS**, **Zustand**, and **OpenAI API**. Features include theme toggling, chat history (in memory via Zustand), and streaming responses using the `ai` SDK.
+An AI-powered chatbot built with **Next.js 14**, **TypeScript**, **Tailwind CSS**, **Zustand**, and the **OpenAI API**. Features include streaming GPT-4 responses, theme toggling, Zustand-powered state, and clean UI components from shadcn/ui.
 
 ---
 
 ## ✨ Features
 
-- 💬 Real-time chat interface with GPT-4
-- 🌗 Dark/light mode toggle using `next-themes`
+- 💬 Real-time AI chat interface (GPT-4)
+- 🌗 Theme toggle with `next-themes`
 - ⚡ Streaming response support via `ai` SDK
-- 💾 Chat state managed by Zustand (no localStorage)
-- 🎨 UI components built with `shadcn/ui` and `lucide-react`
-- 🔐 Environment variable support for secure API keys
+- 💾 Zustand for chat state (no localStorage)
+- 🎨 Styled with Tailwind CSS and shadcn/ui
+- 🔐 Secure API key management using `.env.local`
 
 ---
 
@@ -30,44 +30,68 @@ An AI-powered chatbot built with **Next.js 14**, **TypeScript**, **Tailwind CSS*
 
 ## 🚀 Getting Started
 
-1. **Clone the repo**
-   ```bash
-   git clone https://github.com/your-username/ai-chat-assistant.git
-   cd ai-chat-assistant
-   ```
+### 1. Clone the Repository
 
-2. **Install dependencies**
-   ```bash
-   yarn install
-   ```
+```bash
+git clone https://github.com/flavioespinoza/ai-chat-assistant.git
+cd ai-chat-assistant
+```
 
-3. **Set up environment variables**
-   Create a `.env.local` file with your OpenAI key:
+### 2. Install Dependencies
 
-   ```env
-   OPENAI_API_KEY=your-openai-key-here
-   ```
+```bash
+yarn install
+```
 
-4. **Run the development server**
-   ```bash
-   yarn dev
-   ```
+### 3. Get Your OpenAI Secret Key
 
-5. **Open your browser**
-   Visit [http://localhost:3000](http://localhost:3000)
+1. Go to: [https://platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys)
+2. Log in or create an OpenAI account
+3. Click **“+ Create new secret key”**
+4. Copy the generated key (starts with `sk-...`)
+
+### 4. Set Up Environment Variables
+
+Create a `.env.local` file at the root with this content:
+
+```env
+OPENAI_API_KEY=your-openai-secret-key-here
+```
+
+### 5. Run the Development Server
+
+```bash
+yarn dev
+```
+
+Then visit: [http://localhost:3000](http://localhost:3000)
 
 ---
 
 ## 📁 Project Structure
 
 ```
-app/
-  page.tsx              # Chat UI
-  api/chat/route.ts     # GPT-4 streaming API
-lib/
-  store/chat-store.ts   # Zustand store for messages
-components/ui/          # Reusable UI components
-.env.local              # API key (not committed)
+src/
+├── app/                         # Next.js app directory (App Router)
+│   ├── api/                     # API routes for server-side functions
+│   │   └── chat/
+│   │       └── route.ts         # POST endpoint that streams responses from OpenAI
+│   ├── favicon.ico              # Browser tab icon
+│   ├── globals.css              # Global Tailwind styles
+│   ├── layout.tsx               # App-wide layout (wraps pages, includes <ThemeProvider>)
+│   └── page.tsx                 # Main UI for the chat assistant (front-end logic)
+│
+├── components/
+│   └── ui/                      # UI components based on shadcn/ui
+│       ├── button.tsx           # Reusable button component
+│       ├── card.tsx             # Card wrapper for message layout
+│       └── input.tsx            # Input component for prompt field
+│
+├── lib/
+│   ├── store/                   # Global state management
+│   │   └── chat-store.ts        # Zustand store to manage chat message history
+│   └── utils.ts                 # (optional) Shared utilities (not used yet)
+
 ```
 
 ---
