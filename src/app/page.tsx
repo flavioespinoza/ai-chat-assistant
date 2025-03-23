@@ -9,7 +9,7 @@ import { useChatStore } from '@/lib/store/chat-store'
 import { Moon, Sun } from 'lucide-react'
 
 export default function ChatPage() {
-	const { messages, addMessage, setMessages } = useChatStore()
+	const { messages, addMessage } = useChatStore()
 	const [input, setInput] = useState('')
 	const [loading, setLoading] = useState(false)
 	const { theme, setTheme } = useTheme()
@@ -17,7 +17,7 @@ export default function ChatPage() {
 	const handleSend = async () => {
 		if (!input.trim()) return
 		setLoading(true)
-		const userMessage = { role: 'user', content: input }
+		const userMessage: { role: 'user' | 'assistant'; content: string } = { role: 'user', content: input }
 		addMessage(userMessage)
 		setInput('')
 
@@ -27,12 +27,21 @@ export default function ChatPage() {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ messages: [...messages, userMessage] })
 			})
-			const data = await res.json()
+
+			let data
+			try {
+				data = await res.json()
+			} catch {
+				const fallback = await res.text()
+				throw new Error(`API Error ${res.status}: ${fallback}`)
+			}
+
 			if (data.reply) {
 				addMessage({ role: 'assistant', content: data.reply })
 			}
 		} catch (err) {
-			console.error('Error sending message', err)
+			console.error('Error sending message:', err)
+			addMessage({ role: 'assistant', content: '⚠️ API error. Check logs or API key.' })
 		} finally {
 			setLoading(false)
 		}
