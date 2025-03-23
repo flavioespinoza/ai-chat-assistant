@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Chat Assistant
 
-## Getting Started
+An AI-powered chatbot built with **Next.js 14**, **TypeScript**, **Tailwind CSS**, **Zustand**, and **OpenAI API**. Features include theme toggling, chat history (in memory via Zustand), and streaming responses using the `ai` SDK.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+
+- 💬 Real-time chat interface with GPT-4
+- 🌗 Dark/light mode toggle using `next-themes`
+- ⚡ Streaming response support via `ai` SDK
+- 💾 Chat state managed by Zustand (no localStorage)
+- 🎨 UI components built with `shadcn/ui` and `lucide-react`
+- 🔐 Environment variable support for secure API keys
+
+---
+
+## 🛠️ Tech Stack
+
+- [Next.js 14](https://nextjs.org)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [OpenAI API](https://platform.openai.com/)
+- [Zustand](https://github.com/pmndrs/zustand)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [lucide-react](https://lucide.dev/)
+- [ai SDK](https://sdk.vercel.ai/docs)
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/your-username/ai-chat-assistant.git
+   cd ai-chat-assistant
+   ```
+
+2. **Install dependencies**
+   ```bash
+   yarn install
+   ```
+
+3. **Set up environment variables**
+   Create a `.env.local` file with your OpenAI key:
+
+   ```env
+   OPENAI_API_KEY=your-openai-key-here
+   ```
+
+4. **Run the development server**
+   ```bash
+   yarn dev
+   ```
+
+5. **Open your browser**
+   Visit [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 📁 Project Structure
+
+```
+app/
+  page.tsx              # Chat UI
+  api/chat/route.ts     # GPT-4 streaming API
+lib/
+  store/chat-store.ts   # Zustand store for messages
+components/ui/          # Reusable UI components
+.env.local              # API key (not committed)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧪 Example Prompts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- “Summarize the latest AI trends in 3 bullets.”
+- “What’s the difference between GPT-3.5 and GPT-4?”
+- “Write a tweet about Zustand vs Redux.”
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📝 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT — free to use, modify, and share.
