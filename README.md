@@ -107,3 +107,7 @@ src/
 ## 📝 License
 
 MIT — free to use, modify, and share.
+
+## Todo
+
+- [ ] Got it — I’ve saved those AI Chat Assistant improvements to your project goals. Let me know when you want to tackle them, and I’ll prep the fixes in a dedicated branch. ok that works FYI we need to make the default same light for the AR chat assistant and we need to add a loading or thinking placeholder while the chat bot is getting the info and we need to format the info better the reply info. This is all for the Ai chat assistant.
